@@ -25,6 +25,6 @@ REPEATS=2000 npm test -- --grep 'native autofocus'
 
 The native test uses only HTML autofocus. The controlled test intentionally changes focus, so it should be described as a mechanism repro when reporting upstream, not as proof that WebKit autofocus always does so. Related report: [microsoft/playwright#26349](https://github.com/microsoft/playwright/issues/26349).
 
-One earlier WebKit run failed on native attempt 226 of 300: Username became `secretalice` and Password remained empty after the two `fill()` calls. Another 1,000 navigation run passed, showing the timing dependence.
+One earlier WebKit run failed on native attempt 226 of 300: Username became `secretalice` and Password remained empty after the two `fill()` calls. Separate 1,000 and 2,000 navigation runs passed, showing the timing dependence. In the 2,000 navigation run, autofocus happened after `load` on every page, but Username was focused by the time `page.goto()` returned.
 
 [`UPSTREAM-REPORT.md`](UPSTREAM-REPORT.md) is a draft issue body with the observed result and environment.
